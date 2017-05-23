@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Cyclemap</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+  <script src="https://www.google.com/jsapi?key=AIzaSyB9ZeBiZ1MMyokm9iOdpSnUBL9ZgE1xf7A"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style type="text/css">
+    body { padding: 30px; }
+  </style>
+</head>
+<body>
+
+  <div class="ui relaxed grid">
+    <div class="thirteen wide column">
+      <div class="row">
+        <div id="map"></div>
+      </div>
+      <div class="row">
+        <div id="elevation_chart"></div>
+      </div>
+    </div>
+    <aside class="three wide column">
+      <h3>Waypoints</h3>
+      <div id="waypoints" class="ui relaxed divided list"></div>
+      <input type="button" id="addWaypoint" class="ui primary button" value="Add a waypoint">
+    </aside>
+  </div>
+
+  <script src="cyclemap.js"></script>
+
+  <script>
+    
+    google.load('visualization', '1', { packages: [ 'corechart' ] });
+
+    $('#map').height($(window).height() * 0.8 - 20);
+    $('#elevation_chart').height($(window).height() * 0.2 - 20);
+
+    let cycleMap = new CycleMap();
+
+    $('#addWaypoint').click(() => {
+      cycleMap.addWaypoint();
+    });
+
+    function initMap() {
+      cycleMap.initMap();
+    }
+
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9ZeBiZ1MMyokm9iOdpSnUBL9ZgE1xf7A&callback=initMap"></script>
+
+</body>
+</html>
